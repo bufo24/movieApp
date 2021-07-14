@@ -10,6 +10,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@amischencko/capacitor-oauth2": "^2.1.0",
     "@capacitor/app": "1.0.2",
     "@capacitor/core": "3.0.2",
     "@capacitor/haptics": "1.0.2",
