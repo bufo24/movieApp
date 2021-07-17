@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"backend/Database"
 )
 
 func main() {
@@ -11,5 +12,6 @@ func main() {
 }
 
 func first(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "first\n")
+	info := db.Query();
+	fmt.Fprintf(w, info)
 }
