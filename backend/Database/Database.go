@@ -1,31 +1,16 @@
-package db
+package Database
 
 import (
-	"database/sql"
-	"log"
-	// "github.com/lib/pq"
+	"fmt"
+	"github.com/go-pg/pg/v10"
 )
 
-func main() {
-	connStr := "postgres://postgres:JessePostgres2003?!@192.168.0.11:5432/MovieApp?sslmode=verify-full"
-	db, err := sql.Open("postgres", connStr)
+func init() {
+	opt, err := pg.ParseURL("postgres://postgres:JessePostgres2003?!@192.168.0.11:5432/MovieApp?sslmode=verify-full")
 	if err != nil {
-		log.Fatal(err)
+	panic(err)
 	}
 
-	age := 21
-	rows, err := db.Query("SELECT name FROM users WHERE age = $1", age)
-	log.Print(rows)
-}
-
-func Query() *sql.Rows {
-	connStr := "postgres://postgres:JessePostgres2003?!@192.168.0.11:5432/MovieApp?sslmode=verify-full"
-	db, err := sql.Open("postgres", connStr)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	age := 21
-	rows, err := db.Query("SELECT name FROM users WHERE age = $1", age)
-	return rows
+	db := pg.Connect(opt)
+	fmt.Println(db)
 }
